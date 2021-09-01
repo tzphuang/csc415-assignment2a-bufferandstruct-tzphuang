@@ -12,10 +12,10 @@
 **************************************************************/
 
 #ifdef USEDECIMAL
-#define KNOWLEDGE_OF_C				1
-#define KNOWLEDGE_OF_JAVA			2
+#define KNOWLEDGE_OF_C				1 //yes
+#define KNOWLEDGE_OF_JAVA			2 //yes
 #define KNOWLEDGE_OF_JAVASCRIPT 	4
-#define KNOWLEDGE_OF_PYTHON			8
+#define KNOWLEDGE_OF_PYTHON			8 //yes
 #define KNOWLEDGE_OF_CPLUSPLUS		16
 #define KNOWLEDGE_OF_PASCAL			32
 #define KNOWLEDGE_OF_FORTRAN		64
@@ -30,7 +30,7 @@
 #define KNOWLEDGE_OF_PL1			32768
 #define KNOWLEDGE_OF_INTEL_ASSEMBLER	65536
 #define KNOWLEDGE_OF_IBM_ASSEMBLER	131072
-#define KNOWLEDGE_OF_MIPS_ASSEMBLER	262144
+#define KNOWLEDGE_OF_MIPS_ASSEMBLER	262144 //yes
 #define KNOWLEDGE_OF_ARM_ASSEMBLER	524288
 #define KNOWLEDGE_OF_COBOL			1048576
 #define KNOWLEDGE_OF_APL			2097152
@@ -72,7 +72,7 @@
 
 
 #endif
-typedef struct personalInfo 
+typedef struct personalInfo // 128 bytes big
     {
     char * firstName;
     char * lastName;
