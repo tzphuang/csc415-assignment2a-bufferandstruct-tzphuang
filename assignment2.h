@@ -1,13 +1,13 @@
 /**************************************************************
-* Class:  CSC-415-0# Summer 2021
-* Name: Robert Bierman
-* Student ID: 
-* GitHub Name: bierman
-* Project: Assignment 2 – Command Line Arguments
+* Class:  CSC-415-02# Fall 2021
+* Name:	Tony Huang
+* Student ID: 915090688
+* GitHub Name: tzphuang
+* Project: Assignment 2 – Struct and Buffer
 *
 * File: assignment2.h
 *
-* Description: To show how to use ...
+* Description: 
 *
 **************************************************************/
 
@@ -16,7 +16,7 @@
 #define KNOWLEDGE_OF_JAVA			2 //yes
 #define KNOWLEDGE_OF_JAVASCRIPT 	4
 #define KNOWLEDGE_OF_PYTHON			8 //yes
-#define KNOWLEDGE_OF_CPLUSPLUS		16
+#define KNOWLEDGE_OF_CPLUSPLUS		16 //yes
 #define KNOWLEDGE_OF_PASCAL			32
 #define KNOWLEDGE_OF_FORTRAN		64
 #define KNOWLEDGE_OF_RUBY			128
