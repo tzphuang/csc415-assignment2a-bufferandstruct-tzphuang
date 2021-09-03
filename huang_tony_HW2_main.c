@@ -71,11 +71,11 @@ int main(int argc, char *argv[])
 		nextString = getNext();
 
 		if(nextString != NULL){
-			strcat(block, nextString);	
-			printf("block: %s\n", block);
+			strcat(block, nextString);
 		}
 
-		if(BLOCK_SIZE == strlen(block)){
+		if(BLOCK_SIZE < strlen(block)){
+			//printf("block: %s\n", block);
 			commitBlock(block);
 			free(block);
 			block = malloc(BLOCK_SIZE);
