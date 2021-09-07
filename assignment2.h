@@ -1,16 +1,3 @@
-/**************************************************************
-* Class:  CSC-415-02# Fall 2021
-* Name:	Tony Huang
-* Student ID: 915090688
-* GitHub Name: tzphuang
-* Project: Assignment 2 – Struct and Buffer
-*
-* File: assignment2.h
-*
-* Description: 
-*
-**************************************************************/
-
 #ifdef USEDECIMAL
 #define KNOWLEDGE_OF_C				1 //yes
 #define KNOWLEDGE_OF_JAVA			2 //yes

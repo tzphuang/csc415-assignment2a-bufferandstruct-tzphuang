@@ -7,8 +7,11 @@
 *
 * File: huang_tony_HW2_main.c
 *
-* Description: 
-*
+* Description: Main program stores information relevant to myself including 
+*			student id#/grade level/name/languages known. Program also takes in
+*			string characters to be stored within a block buffer, if the block buffer
+*			becomes full the program will flush that data, this will loop until
+*			getNext() returns NULL.
 **************************************************************/
 #include <stdio.h> 
 #include <stdlib.h>
