@@ -19,29 +19,6 @@
 
 int main(int argc, char *argv[]) 
 {
-	/*
-	printf("hello this is hw2\n");
-	personalInfo myInfo;
-	personalInfo * myInfoPtr;
-	int sizeMyInfo = sizeof(myInfo);
-	int sizeOfPersonalInfo = sizeof(personalInfo);
-
-	printf("my info size is: %d\n", sizeMyInfo);
-	printf("struct personalInfo size is: %d\n", sizeOfPersonalInfo);
-	
-	//grabbing 128 bytes of memory to store the structure personalInfo so it can be populated
-	//personalInfo * myInfoPtr = malloc((sizeof(personalInfo))+1);
-	personalInfo * myInfoPtr = malloc(1);
-
-	//size_t malloc_usable_size (myInfoPtr);
-
-	//printf("example malloc size is: %ld\n", sizeof(malloc(129))); only returns the sizeof a ptr ie:8
-
-	printf("update 1\n");
-	//printf("malloc_usable_size: %d\n", malloc_usable_size);
-	printf("myInfoPtr is size: %ld, at the address of %p\n", sizeof(*myInfoPtr), &myInfoPtr);*/
-
-
 	//grabbing 128 bytes of memory to store the structure personalInfo so it can be populated
 	personalInfo * myInfoPtr = malloc((sizeof(personalInfo)));
 
@@ -57,36 +34,6 @@ int main(int argc, char *argv[])
 	//printf("Argv[3] copied to message is: %s\n", myInfoPtr->message);
 
 	writePersonalInfo(myInfoPtr);
-	/*
-	int writeSuccess = writePersonalInfo(myInfoPtr);
-	if (0 == writeSuccess){
-		printf("Success on writePersonalInfo\n");
-	}
-	else{
-		printf("Fail on writePersonalInfo\n");
-	}*/
-
-	/*
-	// This is the first attempt at filling & flushing buffer
-	char * block = malloc(BLOCK_SIZE);
-	const char * nextString;
-	do{
-		nextString = getNext();
-
-		if(nextString != NULL){
-			strcat(block, nextString);
-		}
-
-		if(BLOCK_SIZE < strlen(block)){
-			//printf("block: %s\n", block);
-			commitBlock(block);
-			free(block);
-			block = malloc(BLOCK_SIZE);
-		}
-		
-	} while(nextString != NULL);*/
-
-	// This is the second attempt at filling & flushing buffer
 
 	char * block = malloc(BLOCK_SIZE);
 	const char * nextString = getNext();
@@ -94,17 +41,15 @@ int main(int argc, char *argv[])
 	int stringLengthNeedingCommit = strlen(nextString);
 	int blockIndex; //used for remembering the block index's next free address
 
-	int partialLengthToCommit;
+	//int partialLengthToCommit;
 	char * partialString = malloc(BLOCK_SIZE);
-	//printf("\nblockFreeSpace: %d, stringLengthNeedingCommit %d\n", blockFreeSpace, stringLengthNeedingCommit);
 
 	while(1)//loop until getNext returns NULL
 	{
 		blockIndex = BLOCK_SIZE - blockFreeSpace;
 		//if nextString fits inside buffer block, concatenate it to whatever is in block
 		if(blockFreeSpace >= stringLengthNeedingCommit){
-			printf("inside loop if1 statement\n");
-			//strncat(block, nextString, stringLengthNeedingCommit); block+index
+			//printf("inside loop if1 statement\n");
 			memcpy(block + blockIndex, nextString, stringLengthNeedingCommit);
 			nextString = getNext();
 			blockFreeSpace = blockFreeSpace - stringLengthNeedingCommit;
@@ -113,45 +58,35 @@ int main(int argc, char *argv[])
 			if(nextString == NULL)
 			{
 				commitBlock(block);
-				printf("inside loop break statement\n");
-				printf("block message: %s\n\n", block);
+				//printf("inside loop break statement\n");
+				//printf("block message: %s\n\n", block);
 				break;
 			}
 
 			
 			stringLengthNeedingCommit = strlen(nextString);
-			printf("block message: %s\n\n", block);
+			//printf("block message: %s\n\n", block);
 		}
+
 		//if nextString is too big for what is left inside the buffer block
 		//take what I need from getString and store it in the buffer
-		
 		else if(blockFreeSpace < stringLengthNeedingCommit){
-			printf("inside loop else if1 statement\n");
-			/*
-			//fills block to full with partial String from nextString
-			strncpy(partialString, nextString, blockFreeSpace); 
-			strncat(block, partialString, blockFreeSpace); 
-			stringLengthNeedingCommit = stringLengthNeedingCommit - blockFreeSpace;
-			//reassigning nextString to the beginning of the address of what was not commmited to block
-			strncpy(partialString, nextString+blockFreeSpace, stringLengthNeedingCommit); 
-			nextString = partialString;
-			blockFreeSpace = 0;*/
+			//printf("inside loop else if1 statement\n");
 
 			//fills block to full with a partial string from nextString
 			memcpy(block+blockIndex, nextString, blockFreeSpace);
 			stringLengthNeedingCommit = stringLengthNeedingCommit - blockFreeSpace;
-			printf("block message1: %s\n\n", block);
 
 			//set nextString to the beginning of what was not commited to the buffer from partial string
 			memcpy(partialString, nextString+blockFreeSpace, stringLengthNeedingCommit);
 			nextString = partialString;
 			blockFreeSpace = 0;
 
-			printf("block message2: %s\n\n", block);
+			//printf("block message2: %s\n\n", block);
 		}
 		//when there is 0 free space left in the buffer flush it
 		if(blockFreeSpace == 0){
-			printf("inside loop commitBlock statement\n\n");
+			//printf("inside loop commitBlock statement\n\n");
 			commitBlock(block);
 			blockFreeSpace = BLOCK_SIZE;
 		}
@@ -170,6 +105,7 @@ int main(int argc, char *argv[])
 	free(partialString);
 	partialString = NULL;
 
+	//printf("Made it to the end!\n");
 	return 0;
 }
 	
